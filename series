@@ -1,0 +1,3 @@
+0001-Use-system-libutf8cpp-library.patch
+0002-cmake-multiarch.patch
+0003-Make-taglib-config-arch-independent.patch

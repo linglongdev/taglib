@@ -1,0 +1,26 @@
+From: Boyuan Yang <byang@debian.org>
+Date: Sun, 3 Oct 2021 02:14:23 -0400
+Subject: Make taglib-config arch-independent
+
+This allows multi-arching libtag1-dev.
+
+Forwarded: no
+Last-Update: 2021-10-03
+Signed-Off-By: Boyuan Yang <byang@debian.org>
+---
+ taglib-config.cmake | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/taglib-config.cmake b/taglib-config.cmake
+index d500fe6..07e0566 100644
+--- a/taglib-config.cmake
++++ b/taglib-config.cmake
+@@ -16,7 +16,7 @@ EOH
+ 
+ prefix=@CMAKE_INSTALL_PREFIX@
+ exec_prefix=@CMAKE_INSTALL_PREFIX@
+-libdir=@LIB_INSTALL_DIR@
++libdir=${exec_prefix}/lib/$(dpkg-architecture -q DEB_HOST_MULTIARCH)
+ includedir=@INCLUDE_INSTALL_DIR@
+ 
+ flags=""

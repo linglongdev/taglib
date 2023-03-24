@@ -1,0 +1,38 @@
+package:
+  id: taglib
+  name: taglib
+  version: 1.11.1
+  kind: lib
+  discription: |
+    taglib.
+
+base:
+  id: org.deepin.base
+  version: 20.5.0
+
+#depends: icu boost-defaults
+
+source:
+  kind: git
+  url: https://github.com/deepin-community/taglib.git
+  version: v20/1.11.1+dfsg.1
+  commit: 809ea55c9887e97f3bc3ddf0a64856168906bef9
+
+  patch:
+  - 0001-Use-system-libutf8cpp-library.patch
+  - 0002-cmake-multiarch.patch
+  - 0003-Make-taglib-config-arch-independent.patch
+build:
+  kind: manual
+  manual:
+    configure: |
+      #exec bash
+      mkdir build
+      cd build
+      cmake -DCMAKE_INSTALL_PREFIX=${PREFIX} \
+            -DCMAKE_INSTALL_LIBDIR=${PREFIX}/lib \
+            -DCMAKE_USE_RELATIVE_PATHS=ON \
+            -DWITH_MP4=ON \
+            -DBUILD_SHARED_LIBS=ON ..
+      make -j6
+      make -j install
